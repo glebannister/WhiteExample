@@ -8,47 +8,30 @@ namespace Framework.ApplicationWrapper
 {
     public class WFApplication
     {
-        public string AppplicationProcessName { get; private set; }
+        private string _applicationProcessName;
 
         public Application App { get; private set; }
 
-        private static WFApplication? _applicationInstance = null;
+        private static WFApplication? _applicationInstance;
 
-        private static object _syncRoot = new();
+        private static readonly object _syncRoot = new();
 
         private WFApplication()
         {
         }
 
-        public static WFApplication GetInstance()
-        {
-            if (_applicationInstance == null)
-            {
-                lock (_syncRoot)
-                {
-                    if (_applicationInstance == null)
-                    {
-                        _applicationInstance = new WFApplication();
-                    }
-                }
-            }
-            return _applicationInstance;
-        }
+        public Process GetApplicationProcess() => GetInstance().App.Process;
 
         public void Launch(string applicationPath) 
         {
+            if (GetInstance().App != null) return;
             GetInstance().App = Application.Launch(applicationPath);
-            AppplicationProcessName = App.Name;
+            _applicationProcessName = GetInstance().App.Process.ProcessName;
         }
 
         public Window GetWindowByName(string windowName) 
         {
             return GetInstance().App.GetWindows().First(window => window.Name.Equals(windowName));
-        }
-
-        public Process GetApplicationProcess() 
-        {
-            return GetInstance().App.Process;
         }
 
         public void CloseTheApplication(int timeOut = 500)
@@ -57,22 +40,31 @@ namespace Framework.ApplicationWrapper
             _applicationInstance = null;
         }
 
+        public static WFApplication GetInstance()
+        {
+            if (_applicationInstance != null) return _applicationInstance;
+            lock (_syncRoot)
+            {
+                if (_applicationInstance == null)
+                {
+                    _applicationInstance = new WFApplication();
+                }
+            }
+            return _applicationInstance;
+        }
+
         private void CloseTheApplicationProcess(int timeOut)
         {
             if (GetInstance().App == null) throw new NullReferenceException("The Application has been killed already");
             if (GetInstance().App.HasExited) return;
-            ExplicitWait.WaitUntil(() =>
-            {
-                return IsApplicationClosed();
-            },
-            timeOut);
+            ExplicitWait.WaitUntil(() => IsApplicationClosed(), timeOut);
         }
 
         private bool IsApplicationClosed() 
         {
             GetInstance().App.Close();
             return !ProcessUtils
-                .GetProcessesByName(AppplicationProcessName)
+                .GetProcessesByName(_applicationProcessName)
                 .Any();
         }
     }

@@ -5,7 +5,7 @@ namespace Framework.Elements
 {
     public abstract class BaseElement
     {
-        public string ElementName;
+        public string ElementName { get; }
 
         protected IUIItem UiItem;
 

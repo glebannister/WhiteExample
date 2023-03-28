@@ -392,3 +392,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Test/build/net48/BoDi.dll
+/Test/build/net48/Castle.Core.dll
+/Test/build/net48/CoverletSourceRootsMapping
+/Test/build/net48/Cucumber.Messages.dll
+/Test/build/net48/Framework.dll
+/Test/build/net48/Framework.dll.config
+/Test/build/net48/Gherkin.dll
+/Test/build/net48/Google.Protobuf.dll
+/Test/build/net48

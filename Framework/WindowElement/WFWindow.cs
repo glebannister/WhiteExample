@@ -13,52 +13,7 @@ namespace Framework.WindowElement
 
         public string Name => _currentWindow.Name;
 
-        public void WaitWhileBusy() => _currentWindow.WaitWhileBusy();
-
-        public Window GetModalWindow(string modalWindowName) => FindModalWindow(modalWindowName);
-
-        public IUIItem GetUIItem(SearchCriteria searchCriteria) => FindElement(searchCriteria);
-
-        public bool Exists
-        {
-            get
-            {
-                try
-                {
-                    if (_currentWindow.Visible && _currentWindow.Enabled)
-                    {
-                        FrameworkLogger.Debug($"Window {_currentWindow.Name} exists");
-                        return true;
-                    }
-                    FrameworkLogger.Debug($"Window {_currentWindow.Name} is not exist");
-                    return false;
-                }
-                catch (Exception ex) when (ex is AutomationException
-                    || ex is ElementNotAvailableException)
-                {
-                    FrameworkLogger.Debug($"Window {_currentWindow.Name} is not exist");
-                    return false;
-                }
-            }
-        }
-
-        public Window Window
-        {
-            get
-            {
-                if (_currentWindow == null)
-                {
-                    throw new AutomationException("", "");
-                }
-
-                return _currentWindow;
-            }
-
-            set
-            {
-                _currentWindow = value;
-            }
-        }
+        public Window Window => _currentWindow ?? throw new AutomationException("", "");
 
         private Window _currentWindow;
 
@@ -66,6 +21,28 @@ namespace Framework.WindowElement
         {
             _currentWindow = window;
         }
+
+        public bool IsExist()
+        {
+            try
+            {
+                var isExist = _currentWindow.Visible && _currentWindow.Enabled;
+                FrameworkLogger.Debug($"Window {_currentWindow.Name} {(isExist ? "exists" : "is not exis")}");
+                return isExist;
+            }
+            catch (Exception ex) when (ex is AutomationException
+                    || ex is ElementNotAvailableException)
+            {
+                FrameworkLogger.Debug($"Window {_currentWindow.Name} is not exist");
+                return false;
+            }
+        }
+
+        public void WaitWhileBusy() => _currentWindow.WaitWhileBusy();
+
+        public Window GetModalWindow(string modalWindowName) => FindModalWindow(modalWindowName);
+
+        public IUIItem GetUIItem(SearchCriteria searchCriteria) => FindElement(searchCriteria);
 
         private IUIItem FindElement(SearchCriteria searchCriteria) 
         {

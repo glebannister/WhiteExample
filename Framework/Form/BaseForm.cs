@@ -4,7 +4,7 @@ namespace Framework.Form
 {
     public abstract class BaseForm
     {
-        public string FormName { get; private set; }
+        public string FormName { get; }
 
         protected WFWindow formWindow;
 

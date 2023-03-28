@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>build</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,14 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Resources\calc.exe">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <None Update="Resources\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
 
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(ProjectDir)App.config" DestinationFolder="$(OutputPath)" ContinueOnError="true" />
