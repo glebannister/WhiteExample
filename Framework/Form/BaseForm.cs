@@ -1,26 +1,23 @@
-﻿using Framework.Log;
-using Framework.WindowElement;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
+﻿using Framework.WindowElement;
 
 namespace Framework.Form
 {
     public abstract class BaseForm
     {
-        private WFWindow _formWindow;
+        public string FormName { get; private set; }
 
-        private string _formName;
+        protected WFWindow formWindow;
 
         protected BaseForm(WFWindow formWindow, string formName) 
         {
-            _formWindow = formWindow;
-            _formName = formName;
+            this.formWindow = formWindow;
+            FormName = formName;
         }
 
-        public T GetElement<T>(SearchCriteria searchCriteria, string elementName) where T : IUIItem
+        public bool IsFormVisible() 
         {
-            FrameworkLogger.Info($"Creating element [Type:'{typeof(T)}', Elements' name:'{elementName}' Forms' name:'{_formName}']");
-            return _formWindow.Window.Get<T>(searchCriteria);
+            formWindow.WaitWhileBusy();
+            return formWindow.IsVisible;
         }
     }
 }

@@ -21,4 +21,8 @@
     <Folder Include="MouseActions\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
 </Project>

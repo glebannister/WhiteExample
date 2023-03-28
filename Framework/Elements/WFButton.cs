@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Automation;
 using TestStack.White.UIItems;
+using TestStack.White.UIItems.Actions;
+using TestStack.White.UIItems.Custom;
 
 namespace Framework.Elements
 {
     public class WFButton : BaseElement
     {
-        public WFButton(UIItem uIItem, string customName) : base(uIItem, customName)
+        public WFButton(IUIItem uiitem, string elementName) : base(uiitem, elementName)
         {
         }
     }

@@ -1,30 +1,25 @@
 ﻿using Framework.Log;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestStack.White.UIItems;
 
 namespace Framework.Elements
 {
     public abstract class BaseElement
     {
-        public string _customName;
+        public string ElementName;
 
-        protected UIItem _uIItem;
+        protected IUIItem UiItem;
 
-        protected BaseElement(UIItem uIItem, string customName) 
+        protected BaseElement(IUIItem uiitem, string elementName)
         {
-            _uIItem = uIItem;
-            _customName = customName;
+            ElementName = elementName;
+            UiItem = uiitem;
         }
 
         public void Click() 
         {
-            FrameworkLogger.Debug($"Clicking on an element [{_customName}]");
-            _uIItem.Click();
-            FrameworkLogger.Debug($"Click on an element [{_customName}] was successful");
+            FrameworkLogger.Debug($"Clicking on an element [{ElementName}]");
+            UiItem.Click();
+            FrameworkLogger.Debug($"Click on an element [{ElementName}] was successful");
         }
     }
 }

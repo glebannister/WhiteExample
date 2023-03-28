@@ -1,6 +1,8 @@
 ﻿using Framework.Log;
 using System.Windows.Automation;
 using TestStack.White;
+using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 
 namespace Framework.WindowElement
@@ -14,6 +16,8 @@ namespace Framework.WindowElement
         public void WaitWhileBusy() => _currentWindow.WaitWhileBusy();
 
         public Window GetModalWindow(string modalWindowName) => FindModalWindow(modalWindowName);
+
+        public IUIItem GetUIItem(SearchCriteria searchCriteria) => FindElement(searchCriteria);
 
         public bool Exists
         {
@@ -61,6 +65,12 @@ namespace Framework.WindowElement
         public WFWindow(Window window)
         {
             _currentWindow = window;
+        }
+
+        private IUIItem FindElement(SearchCriteria searchCriteria) 
+        {
+            FrameworkLogger.Debug($"Finding element by searchCriteria {searchCriteria}");
+            return _currentWindow.Get(searchCriteria);
         }
 
         private Window FindModalWindow(string modalWindowName)
