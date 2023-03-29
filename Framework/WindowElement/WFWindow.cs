@@ -1,4 +1,4 @@
-﻿using Framework.Log;
+﻿using Framework.Logging;
 using System.Windows.Automation;
 using TestStack.White;
 using TestStack.White.UIItems;

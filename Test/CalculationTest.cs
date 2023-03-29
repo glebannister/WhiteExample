@@ -1,6 +1,7 @@
 using Framework.ApplicationWrapper;
 using Framework.WindowElement;
 using NUnit.Framework;
+using Test.Configuration;
 using Test.Forms;
 using Test.Utils;
 
@@ -8,12 +9,10 @@ namespace Test
 {
     public class Tests
     {
-        private string ApplicationName = "calc.exe";
-
         [SetUp]
         public void Setup()
         {
-            var path = FileUtils.GetApplicationExePath(ApplicationName);
+            var path = FileUtils.GetApplicationExePath(AppConfigManager.ApplicationName);
             WFApplication.GetInstance().Launch(path);
         }
 

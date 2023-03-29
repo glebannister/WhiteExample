@@ -1,4 +1,4 @@
-﻿using Framework.Log;
+﻿using Framework.Logging;
 using TestStack.White.UIItems;
 
 namespace Framework.Elements
