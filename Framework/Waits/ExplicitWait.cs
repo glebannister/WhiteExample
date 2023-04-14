@@ -7,7 +7,7 @@ namespace Framework.Waits
     {
         public static bool WaitUntil(Func<bool> condition, int timeoutMilliseconds)
         {
-            FrameworkLogger.GetInstance().Debug($"Waiting for some conditions with timeout: [{timeoutMilliseconds}]");
+            FrameworkLogger.Debug($"Waiting for some conditions with timeout: [{timeoutMilliseconds}]");
             return Retry.For(condition, TimeSpan.FromMilliseconds(timeoutMilliseconds));
         }
     }

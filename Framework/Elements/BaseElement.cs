@@ -7,19 +7,33 @@ namespace Framework.Elements
     {
         public string ElementName { get; }
 
-        protected IUIItem UiItem;
+        protected IUIItem ? uiItem;
+
+        protected IUIItem[] ? uiItems;
 
         protected BaseElement(IUIItem uiitem, string elementName)
         {
             ElementName = elementName;
-            UiItem = uiitem;
+            this.uiItem = uiitem;
+        }
+
+        protected BaseElement(IUIItem[] uiitems, string elementName)
+        {
+            ElementName = elementName;
+            this.uiItems = uiitems;
         }
 
         public void Click() 
         {
             FrameworkLogger.Debug($"Clicking on an element [{ElementName}]");
-            UiItem.Click();
+            uiItem.Click();
             FrameworkLogger.Debug($"Click on an element [{ElementName}] was successful");
+        }
+
+        public string GetText()
+        {
+            FrameworkLogger.Debug($"Getting text from an element [{ElementName}]");
+            return uiItem.Name;
         }
     }
 }

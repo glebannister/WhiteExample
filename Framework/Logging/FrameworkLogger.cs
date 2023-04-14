@@ -19,7 +19,7 @@ namespace Framework.Logging
                 {
                     _logger = new LoggerConfiguration()
                         .MinimumLevel.Debug()
-                        .WriteTo.File(PathToLogFile, rollingInterval: RollingInterval.Day)
+                        .WriteTo.File(PathToLogFile, rollingInterval: RollingInterval.Minute)
                         .CreateLogger();
                 }
             }

@@ -34,7 +34,7 @@ namespace Framework.ApplicationWrapper
             return GetInstance().App.GetWindows().First(window => window.Name.Equals(windowName));
         }
 
-        public void CloseTheApplication(int timeOut = 500)
+        public void CloseTheApplication(int timeOut = 1000)
         {
             CloseTheApplicationProcess(timeOut);
             _applicationInstance = null;
@@ -55,7 +55,7 @@ namespace Framework.ApplicationWrapper
 
         private void CloseTheApplicationProcess(int timeOut)
         {
-            if (GetInstance().App == null) throw new NullReferenceException("The Application has been killed already");
+            if (GetInstance().App == null) throw new NullReferenceException("The Application has been closed already");
             if (GetInstance().App.HasExited) return;
             ExplicitWait.WaitUntil(() => IsApplicationClosed(), timeOut);
         }

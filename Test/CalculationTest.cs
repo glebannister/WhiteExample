@@ -23,6 +23,9 @@ namespace Test
             bool isFormVisible = mainCalcForm.IsFormVisible();
             Assert.IsTrue(isFormVisible, $"Form {mainCalcForm.FormName} isn't visible");
             mainCalcForm.ClickOnOne();
+            var amount = mainCalcForm.GetResultSum();
+            Assert.AreEqual(amount, "1", $"The total sum isn't correct");
+            mainCalcForm.ChooseOrientation("View", "Scientific");
             Thread.Sleep(2000);
         }
 
