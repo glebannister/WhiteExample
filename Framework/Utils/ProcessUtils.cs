@@ -6,8 +6,7 @@ namespace Framework.Utils
     {
         public static IEnumerable<Process> GetProcessesByName(string processName) 
         {
-            var processCollection = Process.GetProcesses();
-            return processCollection.Where(process => process.ProcessName == processName);
+            return Process.GetProcesses().Where(process => process.ProcessName == processName);
         }
     }
 }

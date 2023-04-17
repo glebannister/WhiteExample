@@ -17,21 +17,27 @@ namespace Framework.Elements
 
         public void ChooseMenuBarItemByPath(params string[] menuItemPath) 
         {
-            FrameworkLogger.Debug($"Choosing a menu item by path:[{string.Join("", menuItemPath)}] at menu:[{Name}]");
+            FrameworkLogger.Debug($"Choosing a menu item by path:[{string.Join("/", menuItemPath)}] at menu:[{Name}]");
             if (menuItemPath.Length == 1) 
             {
                 _menuBar.MenuItem(menuItemPath);
                 return;
             }
-            for (int i = 0; i < menuItemPath.Length - 1; i++) 
-            {
-                GetChildMenu(_menuBar.MenuItem(menuItemPath[i]), menuItemPath[i + 1]).Click();
-            }
+            ClickChildMenuItem(menuItemPath);
         }
 
         private Menu GetChildMenu(Menu menu, string elementName)
         {
             return menu.ChildMenus.First(m => m.Name.Contains(elementName));
+        }
+
+        private void ClickChildMenuItem(params string[] menuItemPath) 
+        {
+            for (int i = 0; i < menuItemPath.Length - 1; i++)
+            {
+                var childMenuItem = _menuBar.MenuItem(menuItemPath[i]);
+                GetChildMenu(childMenuItem, menuItemPath[i + 1]).Click();
+            }
         }
     }
 }

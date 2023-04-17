@@ -8,19 +8,15 @@ namespace Framework.ApplicationWrapper
 {
     public class WFApplication
     {
-        private string _applicationProcessName;
-
         public Application App { get; private set; }
 
+        private string _applicationProcessName;
         private static WFApplication? _applicationInstance;
-
         private static readonly object _syncRoot = new();
 
         private WFApplication()
         {
         }
-
-        public Process GetApplicationProcess() => GetInstance().App.Process;
 
         public void Launch(string applicationPath) 
         {

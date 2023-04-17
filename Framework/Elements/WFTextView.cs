@@ -7,9 +7,5 @@ namespace Framework.Elements
         public WFTextView(IUIItem uiitem, string elementName) : base(uiitem, elementName)
         {
         }
-
-        public WFTextView(IUIItem[] uiitems, string elementName) : base(uiitems, elementName)
-        {
-        }
     }
 }

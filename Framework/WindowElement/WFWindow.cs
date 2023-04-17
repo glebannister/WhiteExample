@@ -31,8 +31,7 @@ namespace Framework.WindowElement
                 FrameworkLogger.Debug($"Window {_currentWindow.Name} {(isExist ? "exists" : "is not exis")}");
                 return isExist;
             }
-            catch (Exception ex) when (ex is AutomationException
-                    || ex is ElementNotAvailableException)
+            catch (Exception ex) when (ex is AutomationException|| ex is ElementNotAvailableException)
             {
                 FrameworkLogger.Debug($"Window {_currentWindow.Name} is not exist");
                 return false;
@@ -41,33 +40,19 @@ namespace Framework.WindowElement
 
         public void WaitWhileBusy() => _currentWindow.WaitWhileBusy();
 
-        public IUIItem GetUIItem(SearchCriteria searchCriteria) => FindElement(searchCriteria);
-
-        public IUIItem[] GetMultiple(SearchCriteria searchCriteria) => FindElements(searchCriteria);
-
-        public Window GetModalWindow(string modalWindowName) => FindModalWindow(modalWindowName);
-
-        public MenuBar GetMenuBar(SearchCriteria searchCriteria) => FindMenuBar(searchCriteria);
-
-        private IUIItem FindElement(SearchCriteria searchCriteria) 
+        public IUIItem GetElement(SearchCriteria searchCriteria) 
         {
             FrameworkLogger.Debug($"Finding element by searchCriteria {searchCriteria}");
             return _currentWindow.Get(searchCriteria);
         }
 
-        private IUIItem[] FindElements(SearchCriteria searchCriteria)
-        {
-            FrameworkLogger.Debug($"Finding elements by searchCriteria {searchCriteria}");
-            return _currentWindow.GetMultiple(searchCriteria);
-        }
-
-        private Window FindModalWindow(string modalWindowName)
+        public Window GetModalWindow(string modalWindowName)
         {
             FrameworkLogger.Debug($"Finding modal window by name {modalWindowName}");
             return _currentWindow.ModalWindow(modalWindowName);
         }
 
-        private MenuBar FindMenuBar(SearchCriteria searchCriteria) 
+        public MenuBar GetMenuBar(SearchCriteria searchCriteria) 
         {
             FrameworkLogger.Debug($"Finding menu bar by searchCriteria {searchCriteria}");
             return _currentWindow.GetMenuBar(searchCriteria);

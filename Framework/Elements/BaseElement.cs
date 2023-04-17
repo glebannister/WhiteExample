@@ -17,12 +17,6 @@ namespace Framework.Elements
             this.uiItem = uiitem;
         }
 
-        protected BaseElement(IUIItem[] uiitems, string elementName)
-        {
-            ElementName = elementName;
-            this.uiItems = uiitems;
-        }
-
         public void Click() 
         {
             FrameworkLogger.Debug($"Clicking on an element [{ElementName}]");
