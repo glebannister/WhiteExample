@@ -9,8 +9,6 @@ namespace Framework.Elements
 
         protected IUIItem ? uiItem;
 
-        protected IUIItem[] ? uiItems;
-
         protected BaseElement(IUIItem uiitem, string elementName)
         {
             ElementName = elementName;
