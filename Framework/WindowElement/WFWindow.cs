@@ -23,6 +23,8 @@ namespace Framework.WindowElement
             _currentWindow = window;
         }
 
+        public void WaitWhileBusy() => _currentWindow.WaitWhileBusy();
+
         public bool IsExist()
         {
             try
@@ -37,8 +39,6 @@ namespace Framework.WindowElement
                 return false;
             }
         }
-
-        public void WaitWhileBusy() => _currentWindow.WaitWhileBusy();
 
         public IUIItem GetElement(SearchCriteria searchCriteria) 
         {

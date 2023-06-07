@@ -2,18 +2,18 @@
 using Framework.Elements;
 using Framework.Form;
 using Framework.WindowElement;
-using System.Windows.Automation;
 using Test.Constants;
-using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 
 namespace Test.Forms
 {
     internal class MainCalcForm : BaseForm
     {
-        private WFButton _oneButton => new WFButton(formWindow.GetElement(SearchCriteria.ByAutomationId("131")), "OneButton");
-        private WFTextView _resultSumTextView => new WFTextView(formWindow.GetElement(SearchCriteria.ByAutomationId("158")), "ResultSumTextView");
-        private WFMenuBar _orientationMebuBar => new WFMenuBar(formWindow.GetMenuBar(SearchCriteria
+        private WFButton OneButton => new WFButton(formWindow.GetElement(SearchCriteria.ByAutomationId("131")), "OneButton");
+
+        private WFTextView ResultSumTextView => new WFTextView(formWindow.GetElement(SearchCriteria.ByAutomationId("158")), "ResultSumTextView");
+
+        private WFMenuBar OrientationMebuBar => new WFMenuBar(formWindow.GetMenuBar(SearchCriteria
             .ByAutomationId("MenuBar")
             .AndByText("Application")),
             "OrientationMenuBar");
@@ -26,17 +26,17 @@ namespace Test.Forms
 
         public void ClickOnOne() 
         {
-            _oneButton.Click();
+            OneButton.Click();
         }
 
         public string GetResultSum() 
         {
-            return _resultSumTextView.GetText();
+            return ResultSumTextView.GetText();
         }
 
         public void ChooseOrientation(params string[] orientation) 
         {
-            _orientationMebuBar.ChooseMenuBarItemByPath(orientation);
+            OrientationMebuBar.ChooseMenuBarItemByPath(orientation);
         }
     }
 }

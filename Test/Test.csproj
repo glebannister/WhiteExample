@@ -34,7 +34,6 @@
     </None>
   </ItemGroup>
 
-
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(ProjectDir)App.config" DestinationFolder="$(OutputPath)" ContinueOnError="true" />
   </Target>
