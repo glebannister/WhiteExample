@@ -24,7 +24,6 @@ namespace Test
             mainCalcForm.ClickOnOne();
             var amount = mainCalcForm.GetResultSum();
             Assert.AreEqual(amount, "1", $"The total sum isn't correct");
-            mainCalcForm.ChooseOrientation("View", "Scientific");
         }
 
         [TearDown]

@@ -1,7 +1,4 @@
-﻿using System.Windows.Automation;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Actions;
-using TestStack.White.UIItems.Custom;
+﻿using TestStack.White.UIItems;
 
 namespace Framework.Elements
 {
