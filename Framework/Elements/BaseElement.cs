@@ -7,7 +7,7 @@ namespace Framework.Elements
     {
         public string ElementName { get; }
 
-        protected IUIItem ? uiItem;
+        protected IUIItem uiItem;
 
         protected BaseElement(IUIItem uiitem, string elementName)
         {

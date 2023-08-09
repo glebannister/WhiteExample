@@ -23,7 +23,7 @@ namespace Test
             Assert.IsTrue(isFormVisible, $"Form {mainCalcForm.FormName} isn't visible");
             mainCalcForm.ClickOnOne();
             var amount = mainCalcForm.GetResultSum();
-            Assert.AreEqual(amount, "1", $"The total sum isn't correct");
+            Assert.AreEqual("1", amount, $"The total sum isn't correct");
         }
 
         [TearDown]

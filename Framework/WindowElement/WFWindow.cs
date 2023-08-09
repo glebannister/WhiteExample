@@ -12,8 +12,6 @@ namespace Framework.WindowElement
     {
         public bool IsVisible => _currentWindow.Visible;
 
-        public string Name => _currentWindow.Name;
-
         public Window Window => _currentWindow ?? throw new AutomationException("", "");
 
         private Window _currentWindow;

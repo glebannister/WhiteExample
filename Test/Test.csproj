@@ -38,4 +38,14 @@
     <Copy SourceFiles="$(ProjectDir)App.config" DestinationFolder="$(OutputPath)" ContinueOnError="true" />
   </Target>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Gleb\Desktop\CoE\WhiteExample\Test\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Gleb\Desktop\CoE\WhiteExample\Test\.editorconfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
