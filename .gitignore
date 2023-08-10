@@ -390,6 +390,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+*.exe
 
 # JetBrains Rider
 *.sln.iml
@@ -402,3 +403,5 @@ FodyWeavers.xsd
 /Test/build/net48/Gherkin.dll
 /Test/build/net48/Google.Protobuf.dll
 /Test/build/net48
+/Test/Resources/calc.exe
+/Test/Resources/en-US/calc.exe.mui
